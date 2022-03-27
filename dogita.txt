@@ -1,1 +1,0 @@
-ssh-keygen -t rsa -b 4096 -C "s222859@student.uek.krakow.pl" asddsfdsfdsf asdsadsad
