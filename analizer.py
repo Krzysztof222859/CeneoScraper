@@ -4,9 +4,9 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 print(*[filename.split(".")[0] for filename in os.listdir("./opinions")], sep="\n")
-product_id = input("Podaj identyfikator produktu: ")
+link = input("Podaj identyfikator produktu: ")
 
-opinions = pd.read_json(f"opinions/{product_id}.json")
+opinions = pd.read_json(f"opinions/{link}.json")
 
 
 opinions.stars = opinions.stars.map(lambda x: float(x.split("/")[0].replace(",", ".")))
@@ -24,7 +24,7 @@ recommendation.plot.pie(
     labels=["Nie polecam", "Polecam", "Nie mam zdania"]
 )
 plt.title("Rekomendacja")
-plt.savefig(f"plots/{product_id}_recommendations.png")
+plt.savefig(f"plots/{link}_recommendations.png")
 plt.close()
 
 stars = opinions.stars.value_counts().sort_index().reindex(list(np.arange(0,5.5,0.5)), fill_value=0)
@@ -34,5 +34,5 @@ plt.xlabel("Liczba gwiazdek")
 plt.ylabel("Liczba opinii")
 plt.grid(True)
 plt.xticks(rotation=0)
-plt.savefig(f"plots/{product_id}_stars.png")
+plt.savefig(f"plots/{link}_stars.png")
 plt.close()
