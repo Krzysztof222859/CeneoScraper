@@ -7,11 +7,11 @@ print(*[filename.split(".")[0] for filename in os.listdir("./opinions")], sep="\
 link = input("Podaj identyfikator produktu: ")
 
 opinions = pd.read_json(f"opinions/{link}.json")
-
+# print(opinions)
 
 opinions.stars = opinions.stars.map(lambda x: float(x.split("/")[0].replace(",", ".")))
 opinions_count = len(opinions.index)
-
+# opinions_count = opinions.shape[0]
 pros_count = opinions.pros.map(bool).sum()
 cons_count = opinions.cons.map(bool).sum()
 average_score = opinions.stars.mean().round(2)
